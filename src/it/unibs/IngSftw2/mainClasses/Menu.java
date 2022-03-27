@@ -12,7 +12,7 @@ public class Menu {
     final private static String CORNICE = "--------------------------------";
     final private static String VOCE_USCITA = "0\tEsci";
     final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata : ";
-    final private static String[] VOCI_Configuratore = new String[]{"Inserimento nuova gerarchia","Visualizzazione delle gerarchie"};
+    final private static String[] VOCI_Configuratore = new String[]{"Inserimento nuova gerarchia","Visualizzazione delle gerarchie","inserimetno dei parametri degli scambi"};
     public static final int ZERO = 0;
     public static final int UNO = 1;
 
@@ -95,8 +95,12 @@ public class Menu {
 
 
                     }while(scelta==1);
+                case 3:
+                    //metodo per l'inserimento dei paramentri
+                    break;
                 default:
                     break;
+
             }
         }while(risposta!=0);
 

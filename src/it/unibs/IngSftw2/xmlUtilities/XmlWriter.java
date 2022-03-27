@@ -1,12 +1,7 @@
 package it.unibs.IngSftw2.xmlUtilities;
 
-import it.unibs.IngSftw2.mainClasses.Sistema;
-import it.unibs.IngSftw2.mainClasses.Utente;
-import it.unibs.IngSftw2.mainClasses.Gerarchia;
-import it.unibs.IngSftw2.mainClasses.Configuratore;
-import it.unibs.IngSftw2.mainClasses.CampoNativo;
-import it.unibs.IngSftw2.mainClasses.DatiUtenti;
-import it.unibs.IngSftw2.mainClasses.Categoria;
+import  it.unibs.IngSftw2.mainClasses.ParametriScambi;
+import it.unibs.IngSftw2.mainClasses.*;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import javax.xml.parsers.DocumentBuilder;
@@ -156,6 +151,50 @@ public class XmlWriter {
             transformer2.transform(input, output);
         }catch (ParserConfigurationException | TransformerConfigurationException e) {
             e.printStackTrace();
+        } catch (TransformerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void salvaParametri(ParametriScambi p, String filename){
+        try{
+            DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
+            Document document = documentBuilder.newDocument();
+
+            Element parametri=document.createElement("ParametriScambi");
+            document.appendChild(parametri);
+
+            Element piazza=document.createElement("piazza");
+            piazza.appendChild(document.createTextNode(p.getPiazza()));
+            parametri.appendChild(piazza);
+
+            Element luoghi=document.createElement("luoghi");
+            parametri.appendChild(luoghi);
+
+            for(String l: p.getLuoghi()){
+                Element luogo=document.createElement("luogo");
+                luogo.appendChild(document.createTextNode(l));
+                luoghi.appendChild(luogo);
+            }
+
+            Element giorni= document.createElement("giorni");
+            parametri.appendChild(giorni);
+
+            for(Giorno g:p.getGiorni()){
+                Element giorno=document.createElement("giorno");
+                giorno.appendChild(document.createTextNode(g.toString()));
+                giorni.appendChild(giorno);
+            }
+
+
+            Transformer transformer2 = TransformerFactory.newInstance().newTransformer();
+            Result output = new StreamResult(new File(filename));
+            Source input = new DOMSource(document);
+            transformer2.transform(input, output);
+
+        }catch(ParserConfigurationException | TransformerConfigurationException e){
+
         } catch (TransformerException e) {
             e.printStackTrace();
         }

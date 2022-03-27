@@ -8,9 +8,6 @@ import java.util.ArrayList;
  */
 public class Categoria {
     private String nome;
-
-
-
     private String descrizione;
     private ArrayList <CampoNativo> campiNativi= new ArrayList <CampoNativo>();
 

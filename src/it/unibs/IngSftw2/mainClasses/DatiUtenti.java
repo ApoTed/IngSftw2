@@ -12,7 +12,7 @@ public class DatiUtenti {
     public static final String INSERISCI_PASSWORD = "Inserisci la tua password: ";
     public static final Utente CREDENZIALI_PREDEFINITE=new Configuratore("bello", "12");
     private ArrayList <Utente> listaUtenti = new ArrayList <Utente>();
-    ;
+
 
     /**
      * Costruttore della classe DatiUtenti
@@ -29,6 +29,8 @@ public class DatiUtenti {
      */
     public Utente menuAccesso() {
         boolean successo=false;
+        //chiedi se è un nuovo fruitore
+        //fruitore inserisci le tue nove credeziali
         String username=Utilita.leggiStringaNonVuota("Benvenuto "+ INSERISCI_NOME);
         String password=Utilita.leggiStringaNonVuota(INSERISCI_PASSWORD);
         Utente temp= new Utente(username, password);
@@ -151,7 +153,6 @@ public class DatiUtenti {
         if(conf==true) {
             Configuratore c=new Configuratore(name, password);
             this.listaUtenti.add(c);
-
         }
         return successo;
     }
