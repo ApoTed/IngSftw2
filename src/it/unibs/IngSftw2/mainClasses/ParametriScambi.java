@@ -28,4 +28,12 @@ public class ParametriScambi {
     public ArrayList<Giorno> getGiorni() {
         return giorni;
     }
+
+    public Orario[] getOre() {
+        return ore;
+    }
+
+    public int getScadenza() {
+        return scadenza;
+    }
 }

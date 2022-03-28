@@ -187,6 +187,19 @@ public class XmlWriter {
                 giorni.appendChild(giorno);
             }
 
+            Element intervallo=document.createElement("intervallo");
+            parametri.appendChild(intervallo);
+
+            Element orarioIniziale=document.createElement("orarioIniziale");
+            orarioIniziale.appendChild(document.createTextNode(p.getOre()[0].toStringOrario()));
+            intervallo.appendChild(orarioIniziale);
+            Element orarioFinale=document.createElement("orarioFinale");
+            orarioFinale.appendChild(document.createTextNode(p.getOre()[1].toStringOrario()));
+            intervallo.appendChild(orarioFinale);
+
+            Element scadenza=document.createElement("scadenza");
+            scadenza.appendChild(document.createTextNode(Integer.toString(p.getScadenza())));
+            parametri.appendChild(scadenza);
 
             Transformer transformer2 = TransformerFactory.newInstance().newTransformer();
             Result output = new StreamResult(new File(filename));

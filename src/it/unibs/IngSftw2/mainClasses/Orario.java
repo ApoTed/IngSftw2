@@ -55,4 +55,22 @@ public class Orario {
         }
         return dentro;
     }
+
+    public String toStringOrario(){
+        StringBuilder str = null;
+        if(this.minuti<10){
+            str.append("0"+this.ore);
+        }
+        else{
+            str.append(this.ore);
+        }
+
+        if(this.minuti==0){
+            str.append(":00");
+        }
+        else{
+            str.append(":30");
+        }
+        return str.toString();
+    }
 }

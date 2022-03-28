@@ -31,8 +31,23 @@ public class DatiUtenti {
         boolean successo=false;
         //chiedi se è un nuovo fruitore
         //fruitore inserisci le tue nove credeziali
-        String username=Utilita.leggiStringaNonVuota("Benvenuto "+ INSERISCI_NOME);
-        String password=Utilita.leggiStringaNonVuota(INSERISCI_PASSWORD);
+        int scelta=Utilita.leggiIntero("inserisci 1 se sei un nuovo fruitore e vuoi registrarti, 0 altrimenti",0,1);
+        String username=null;
+        String password=null;
+        if(scelta==1){
+            do{
+                username=Utilita.leggiStringaNonVuota("Inserisci il nome con cui vuoi registrarti");
+                if(this.checkName(username)){
+                    System.out.println("questo nome non è disponibile");
+                }
+            }while(this.checkName(username));
+            password=Utilita.leggiStringaNonVuota("Inserisci la tua password");
+            this.addUtente(username,password,false);
+        }
+        else{
+            username=Utilita.leggiStringaNonVuota("Benvenuto "+ INSERISCI_NOME);
+            password=Utilita.leggiStringaNonVuota(INSERISCI_PASSWORD);
+        }
         Utente temp= new Utente(username, password);
         if( this.checkConf(temp)) {
             String newUsername;
@@ -71,7 +86,6 @@ public class DatiUtenti {
             }
             for (Utente toCompare : this.getListaUtenti()) {
                 if( Utente.sameUtente(toCompare, temp)) {
-
                     successo=true;
                 }
 
@@ -130,13 +144,19 @@ public class DatiUtenti {
     /**
      * Metodo per verificare se uno username è già usato da un altro utente
      * @param name lo username di cui si vuole verificare la presenza
-     * @return
+     * @return true se è già presente false altrimenti
      */
     public boolean checkName (String name) {
         boolean presente=false;
+        if(CREDENZIALI_PREDEFINITE.getUsername().equals(name)){
+            presente=true;
+            return presente;
+        }
         for (Utente x: this.listaUtenti) {
-            if(x.getUsername().equals(name))
+            if(x.getUsername().equals(name)){
                 presente=true;
+            }
+
         }
         return presente;
     }
@@ -153,6 +173,10 @@ public class DatiUtenti {
         if(conf==true) {
             Configuratore c=new Configuratore(name, password);
             this.listaUtenti.add(c);
+        }
+        else{
+            Fruitore f=new Fruitore(name, password);
+            this.listaUtenti.add(f);
         }
         return successo;
     }
