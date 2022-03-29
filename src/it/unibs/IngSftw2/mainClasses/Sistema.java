@@ -84,4 +84,21 @@ public class Sistema {
         }
         return valido;
     }
+
+    public ArrayList<Categoria> getListaRadici(){
+        ArrayList<Categoria> radici=new ArrayList<Categoria>();
+        for(Gerarchia g:this.listaGerarchie){
+            radici.add(g.getRadice());
+        }
+        return radici;
+    }
+
+    public String toStringRadici(){
+        StringBuffer stb=new StringBuffer();
+        for(Categoria c:this.getListaRadici()){
+            stb.append(c.toStringCategoria()+"\n");
+        }
+        return stb.toString();
+    }
+
 }

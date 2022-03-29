@@ -36,4 +36,19 @@ public class ParametriScambi {
     public int getScadenza() {
         return scadenza;
     }
+
+    public String toStringParametri(){
+        StringBuffer stb=new StringBuffer();
+        stb.append("Piazza: "+this.piazza);
+        stb.append("Luoghi: ");
+        for(String s:this.luoghi){
+            stb.append(s+",");
+        }
+        stb.append("\nGiorni:");
+        for(Giorno g:this.giorni) {
+            stb.append(g.toString() + ",");
+        }
+
+        return stb.toString();
+    }
 }
