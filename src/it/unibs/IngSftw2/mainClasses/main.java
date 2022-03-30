@@ -24,6 +24,10 @@ public class main {
         ArrayList <Gerarchia> gs=new ArrayList<>();
         Sistema sistema=new Sistema(gs);
         ParametriScambi param=null;
+        File fileParametri=new File("parametriSalvati.xml");
+        if(fileParametri.exists() && !fileParametri.isDirectory()){
+            param=XmlReader.leggiParametri("parametriSalvati.mxl");
+        }
         Configurazione conf=new Configurazione(sistema,param);
         File fileSistema = new File("sistema.xml");
         if(fileSistema.exists() && !fileSistema.isDirectory()) {
@@ -34,10 +38,10 @@ public class main {
             String titolo="Benvenuto nel sistema di gestione baratti";
             String[] voci=new String[]{};
             Menu m=new Menu(titolo,voci);
-            m.MenuConfiguratore(conf);
+            //m.MenuConfiguratore(conf);
         }
-        /**
-        ArrayList<String> luoghi=new ArrayList<String>();
+
+       /* ArrayList<String> luoghi=new ArrayList<String>();
         luoghi.add("a");
         luoghi.add("s");
         luoghi.add("d");
@@ -47,9 +51,9 @@ public class main {
         Orario[] ore=new Orario[]{new Orario(10,00),new Orario(15,00)};
         ParametriScambi p=new ParametriScambi("Brescia",luoghi,giorni,ore,15);
         System.out.println(p.toStringParametri());
-         */
+        */
         System.out.println("\nFINE PROGRAMMA");
-
+        XmlWriter.salvaParametri(param,"parametriSalvati.xml");
         XmlWriter.salvaSistema(sistema, "sistema.xml");
         XmlWriter.utentiWrite(x, "listaUtenti.xml");
 

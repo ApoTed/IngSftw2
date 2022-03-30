@@ -1,13 +1,8 @@
 package it.unibs.IngSftw2.xmlUtilities;
 
 
-import it.unibs.IngSftw2.mainClasses.DatiUtenti;
-import it.unibs.IngSftw2.mainClasses.Configuratore;
-import it.unibs.IngSftw2.mainClasses.Categoria;
-import it.unibs.IngSftw2.mainClasses.Gerarchia;
-import it.unibs.IngSftw2.mainClasses.Sistema;
-import it.unibs.IngSftw2.mainClasses.CampoNativo;
-import it.unibs.IngSftw2.mainClasses.Utente;
+import it.unibs.IngSftw2.mainClasses.*;
+
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
@@ -314,5 +309,150 @@ public class XmlReader {
         return dati;
     }
 
+    public static ParametriScambi leggiParametri(String filename) throws XMLStreamException {
+        XMLInputFactory xmlif = null;
+        XMLStreamReader xmlr = null;
+        //inizialiazzo il reader
+        try {
+            xmlif = XMLInputFactory.newInstance();
+            xmlr = xmlif.createXMLStreamReader(filename, new FileInputStream(filename));
+        } catch (Exception e) {
+            System.out.println("Errore nell'inizializzazione del reader:");
+            System.out.println(e.getMessage());
+        }String piazza = null;
+        ArrayList <String> luoghi=new ArrayList<>();
+        ArrayList <Giorno> giorni=new ArrayList<>();
+        Orario[] ore = new Orario[2];
+        int scadenza = 0;
+        while(xmlr.hasNext()){
+            boolean fineParametri=false;
+            
+            if(xmlr.isStartElement() && xmlr.getLocalName().equals("ParametriScambi")){
+                while(!fineParametri){
+                    if(xmlr.isStartElement()){
+                        switch(xmlr.getLocalName()){
+                            case "piazza":
+                                boolean finePiazza=false;
+                                while(!finePiazza){
+                                    if(xmlr.isCharacters()){
+                                        piazza=xmlr.getText();
+                                    }
+                                    if(xmlr.isEndElement() && xmlr.getLocalName().equals("piazza"))
+                                        finePiazza=true;
+                                    if(!finePiazza)
+                                        xmlr.next();
+                                }
+                                break;
+                            case "luoghi":
+                                boolean fineLuoghi=false;
+                                while(!fineLuoghi){
+                                    if(xmlr.isStartElement() && xmlr.getLocalName().equals("luogo")){
+                                        boolean fineLuogo=false;
+                                        String l=null;
+                                        while(!fineLuogo){
+                                            if(xmlr.isCharacters()){
+                                                l=xmlr.getText();
+                                            }
+                                            if(xmlr.isEndElement() && xmlr.getLocalName().equals("luogo"))
+                                                fineLuogo=true;
+                                            if(!fineLuogo)
+                                                xmlr.next();
+                                        }
+                                        luoghi.add(l);
+                                    }
+                                    if(xmlr.isEndElement() && xmlr.getLocalName().equals("luoghi"))
+                                        fineLuoghi=true;
+                                    if(!fineLuoghi)
+                                        xmlr.next();
+                                }
+                                break;
+                            case "giorni":
+                                boolean fineGiorni=false;
+                                while(!fineGiorni){
+                                    if(xmlr.isStartElement() && xmlr.getLocalName().equals("giorno")){
+                                        boolean fineGiorno=false;
+                                        Giorno g=null;
+                                        while(!fineGiorno){
+                                            if(xmlr.isCharacters()){
+                                                g=Giorno.getGiornoFromString(xmlr.getText());
+                                            }
+                                            if(xmlr.isEndElement() && xmlr.getLocalName().equals("giorno"))
+                                                fineGiorno=true;
+                                            if(!fineGiorno)
+                                                xmlr.next();
+                                        }
+                                        giorni.add(g);
+                                    }
+                                    if(xmlr.isEndElement() && xmlr.getLocalName().equals("giorni"))
+                                        fineGiorni=true;
+                                    if(!fineGiorni)
+                                        xmlr.next();
+                                }
+                                break;
+                            case "intervallo":
+                                boolean fineIntervallo=false;
+                                while(!fineIntervallo){
+                                    if(xmlr.isStartElement() && xmlr.getLocalName().equals("orarioIniziale")){
+                                        boolean fineInizio=false;
+                                        Orario or=null;
+                                        while(!fineInizio){
+                                            if(xmlr.isCharacters()){
+                                                or=Orario.getOrarioFromString(xmlr.getText());
+                                            }
+                                            if(xmlr.isEndElement() && xmlr.getLocalName().equals("orarioIniziale")){
+                                                ore[0]=or;
+                                                fineInizio=true;
+                                            }
 
+                                            if(!fineInizio)
+                                                xmlr.next();
+                                        }
+                                    }
+                                    if(xmlr.isStartElement() && xmlr.getLocalName().equals("orarioFinale")){
+                                        boolean fineFinale=false;
+                                        Orario oFin=null;
+                                        while(!fineFinale){
+                                            if(xmlr.isCharacters()){
+                                                oFin=Orario.getOrarioFromString(xmlr.getText());
+                                            }
+                                            if(xmlr.isEndElement() && xmlr.getLocalName().equals("orarioFinale")){
+                                                fineFinale=true;
+                                                ore[1]=oFin;
+                                            }
+                                            if(!fineFinale)
+                                                xmlr.next();
+                                        }
+                                    }
+                                    if(xmlr.isEndElement() && xmlr.getLocalName().equals("intervallo")){
+                                        fineIntervallo=true;
+                                    }
+                                    if(!fineIntervallo)
+                                        xmlr.next();
+                                }
+                                break;
+                            case "scadenza":
+                                boolean fineScad=false;
+                                while(!fineScad){
+                                    if(xmlr.isCharacters()){
+                                        scadenza=Integer.valueOf(xmlr.getText());
+                                    }
+                                    if(xmlr.isEndElement() && xmlr.getLocalName().equals("scadenza"))
+                                        fineScad=true;
+                                    if(!fineScad){
+                                        xmlr.next();
+                                    }
+                                }
+                        }
+                    }
+                    if(xmlr.isEndElement() && xmlr.getLocalName().equals("ParametriScambi" ))
+                        fineParametri=true;
+                    if(!fineParametri)
+                        xmlr.next();
+                }
+            }
+            xmlr.next();
+        }
+        ParametriScambi par=new ParametriScambi(piazza,luoghi, giorni,ore,scadenza);
+        return par;
+    }
 }

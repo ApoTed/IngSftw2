@@ -16,7 +16,7 @@ public enum Giorno {
                 day="lunedì";
                 break;
             case MARTEDI:
-                day="martedi";
+                day="martedì";
                 break;
             case MERCOLEDI:
                 day="mercoledì";
@@ -36,5 +36,32 @@ public enum Giorno {
 
         }
         return day;
+    }
+
+    public static Giorno getGiornoFromString(String gg){
+
+        switch(gg){
+            case "lunedì":
+                return LUNEDI;
+            case "martedì":
+                return MARTEDI;
+
+            case "mercoledì":
+                return MERCOLEDI;
+
+            case "giovedì":
+                return GIOVEDI;
+
+            case "venerdì":
+                return VENERDI;
+
+            case "sabato":
+                return SABATO;
+
+            case "domenica":
+                return DOMENICA;
+
+        }
+        return null;
     }
 }

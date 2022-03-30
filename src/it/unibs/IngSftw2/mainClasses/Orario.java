@@ -56,6 +56,19 @@ public class Orario {
         return dentro;
     }
 
+    public static Orario getOrarioFromString(String ora){
+        StringBuffer sb=new StringBuffer();
+        sb.append(ora.charAt(0));
+        sb.append(ora.charAt(1));
+        int o=Integer.valueOf(sb.toString());
+        StringBuffer sbm=new StringBuffer();
+        sbm.append(ora.charAt(3));
+        sbm.append(ora.charAt(4));
+        int m=Integer.valueOf(sbm.toString());
+        Orario or=new Orario(o,m);
+        return or;
+    }
+
     public String toStringOrario(){
         StringBuilder str = new StringBuilder();
         if(this.ore<10){
