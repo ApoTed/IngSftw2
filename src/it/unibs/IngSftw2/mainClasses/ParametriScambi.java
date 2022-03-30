@@ -40,15 +40,24 @@ public class ParametriScambi {
     public String toStringParametri(){
         StringBuffer stb=new StringBuffer();
         stb.append("Piazza: "+this.piazza);
-        stb.append("Luoghi: ");
-        for(String s:this.luoghi){
-            stb.append(s+",");
+        stb.append("\nLuoghi: ");
+        for(int i=0;i<luoghi.size();i++){
+            stb.append(luoghi.get(i));
+            if(i!=luoghi.size()-1){
+                stb.append(",");
+            }
         }
-        stb.append("\nGiorni:");
-        for(Giorno g:this.giorni) {
-            stb.append(g.toString() + ",");
+        stb.append(".");
+        stb.append("\nGiorni: ");
+        for(int i=0;i<giorni.size();i++){
+            stb.append(giorni.get(i).toString());
+            if(i!=giorni.size()-1){
+                stb.append(",");
+            }
         }
-
+        stb.append(".");
+        stb.append("\nOrario: " + ore[0].toStringOrario() + "-" + ore[1].toStringOrario());
+        //stb.append("\nScadenza: " + scadenza);
         return stb.toString();
     }
 }

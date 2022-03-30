@@ -34,9 +34,23 @@ public class main {
             Menu m=new Menu(titolo,voci);
             m.MenuConfiguratore(sistema);
         }
+        /**
+        ArrayList<String> luoghi=new ArrayList<String>();
+        luoghi.add("a");
+        luoghi.add("s");
+        luoghi.add("d");
+        ArrayList<Giorno> giorni=new ArrayList<>();
+        giorni.add(Giorno.MARTEDI);
+        giorni.add(Giorno.GIOVEDI);
+        Orario[] ore=new Orario[]{new Orario(10,00),new Orario(15,00)};
+        ParametriScambi p=new ParametriScambi("Brescia",luoghi,giorni,ore,15);
+        System.out.println(p.toStringParametri());
+         */
         System.out.println("\nFINE PROGRAMMA");
+
         XmlWriter.salvaSistema(sistema, "sistema.xml");
         XmlWriter.utentiWrite(x, "listaUtenti.xml");
+
     }
 
 }

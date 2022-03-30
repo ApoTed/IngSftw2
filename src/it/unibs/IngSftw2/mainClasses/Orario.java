@@ -57,8 +57,8 @@ public class Orario {
     }
 
     public String toStringOrario(){
-        StringBuilder str = null;
-        if(this.minuti<10){
+        StringBuilder str = new StringBuilder();
+        if(this.ore<10){
             str.append("0"+this.ore);
         }
         else{

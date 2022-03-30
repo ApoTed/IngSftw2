@@ -1,18 +1,18 @@
 package it.unibs.IngSftw2.mainClasses;
 
 
-import java.util.ArrayList;
-
 /**
  * Classe per la gestione dei menu
  *  @author Jacopo Tedeschi,Enrico Zambelli
  */
 public class Menu {
 
+
     final private static String CORNICE = "--------------------------------";
     final private static String VOCE_USCITA = "0\tEsci";
     final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata : ";
-    final private static String[] VOCI_Configuratore = new String[]{"Inserimento nuova gerarchia","Visualizzazione delle gerarchie","inserimetno dei parametri degli scambi"};
+    final private static String[] VOCI_Configuratore = new String[]{"Inserimento nuova gerarchia","Visualizzazione delle gerarchie","Inserimento dei parametri degli scambi"};
+    public static final String[] VOCI_Fruitore = new String[]{"Visualizza le radici e i parametri di sistema"};
     public static final int ZERO = 0;
     public static final int UNO = 1;
 
@@ -96,7 +96,7 @@ public class Menu {
 
                     }while(scelta==1);
                 case 3:
-                    //metodo per l'inserimento dei paramentri
+                    //metodo per l'inserimento dei parametri
                     break;
                 default:
                     break;
@@ -104,6 +104,23 @@ public class Menu {
             }
         }while(risposta!=0);
 
+    }
+
+    public void MenuFruitore(Configurazione conf){
+        int rispostaFruitore;
+        this.setVoci(VOCI_Fruitore);
+        do {
+            rispostaFruitore = this.scegli();
+            switch (rispostaFruitore){
+                case 1 :
+                    System.out.println(conf.getSis().toStringRadici());
+                    System.out.println(conf.getParametri().toStringParametri());
+                    break;
+                default:
+                    break;
+
+            }
+        }while(rispostaFruitore !=0);
     }
 
     /**
