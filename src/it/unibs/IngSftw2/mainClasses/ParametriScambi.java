@@ -6,12 +6,12 @@ public class ParametriScambi {
     private String piazza;
     private ArrayList <String> luoghi=new ArrayList<>();
     private ArrayList <Giorno> giorni=new ArrayList<>();
-    private Orario[] ore = new Orario[2];
+    private ArrayList <Intervallo> intervalli=new ArrayList<>();
     private int scadenza;
 
-    public ParametriScambi(String _piazza, ArrayList <String> _luoghi, ArrayList <Giorno> _giorni, Orario[] _ore, int _scadenza){
+    public ParametriScambi(String _piazza, ArrayList <String> _luoghi, ArrayList <Giorno> _giorni, ArrayList<Intervallo> _intervalli, int _scadenza){
         this.giorni=_giorni;
-        this.ore=_ore;
+        this.intervalli=_intervalli;
         this.piazza=_piazza;
         this.luoghi=_luoghi;
         this.scadenza=_scadenza;
@@ -29,8 +29,8 @@ public class ParametriScambi {
         return giorni;
     }
 
-    public Orario[] getOre() {
-        return ore;
+    public ArrayList<Intervallo> getIntervalli() {
+        return intervalli;
     }
 
     public int getScadenza() {
@@ -56,7 +56,10 @@ public class ParametriScambi {
             }
         }
         stb.append(".");
-        stb.append("\nOrario: " + ore[0].toStringOrario() + "-" + ore[1].toStringOrario());
+        for(Intervallo x : this.intervalli){
+            stb.append("\nOrario: " + x.getOre()[0].toStringOrario() + "-" + x.getOre()[1].toStringOrario());
+        }
+
         //stb.append("\nScadenza: " + scadenza);
         return stb.toString();
     }
