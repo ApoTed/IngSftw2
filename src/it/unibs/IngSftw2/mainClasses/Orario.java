@@ -4,9 +4,9 @@ public class Orario {
     private int ora;
     private int minuti;
 
-    public Orario(int _ore, int _minuti){
+    public Orario(int _ora, int _minuti){
         this.minuti=_minuti;
-        this.ora =_ore;
+        this.ora =_ora;
     }
 
     public boolean orarioValido(){
@@ -20,21 +20,11 @@ public class Orario {
     }
 
     /**
-     * metodo che applicato sull'orario di apertura controllache l'intervallo esista
+     * metodo che applicato sull'orario di apertura controlla che l'intervallo esista
      * @param end orario fine intervallo
      * @return true se è valido
      */
-    public boolean intervalloValido(Orario end){
-        boolean valido=false;
-        if(this.ora ==end.ora){
-            if(this.minuti==0 && end.minuti==30){
-                valido=true;
-            }
-        }
-        if(this.ora <end.ora)
-            valido=true;
-        return valido;
-    }
+
     public boolean isInsideIntervallo(Orario o1, Orario o2){
         boolean dentro=false;
         if(o1.ora ==this.ora && this.ora ==o2.ora){
@@ -85,5 +75,13 @@ public class Orario {
             str.append(":30");
         }
         return str.toString();
+    }
+
+    public int getOra() {
+        return ora;
+    }
+
+    public int getMinuti() {
+        return minuti;
     }
 }

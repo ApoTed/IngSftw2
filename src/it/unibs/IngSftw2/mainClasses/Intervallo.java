@@ -11,4 +11,16 @@ public class Intervallo {
     public Orario[] getOre() {
         return ore;
     }
+
+    public boolean intervalloValido(){
+        boolean valido=false;
+        if(this.ore[1].getOra()==this.ore[1].getOra()){
+            if(this.ore[0].getMinuti()==0 && this.ore[1].getMinuti()==30){
+                valido=true;
+            }
+        }
+        if(this.ore[0].getOra() <this.ore[1].getOra())
+            valido=true;
+        return valido;
+    }
 }
