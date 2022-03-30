@@ -187,15 +187,21 @@ public class XmlWriter {
                 giorni.appendChild(giorno);
             }
 
-            Element intervallo=document.createElement("intervallo");
-            parametri.appendChild(intervallo);
+            Element intervalli=document.createElement("intervalli");
+            parametri.appendChild(intervalli);
+            for(Intervallo x: p.getIntervalli()){
+                Element intervallo=document.createElement("intervallo");
+                intervalli.appendChild(intervallo);
 
-            Element orarioIniziale=document.createElement("orarioIniziale");
-            orarioIniziale.appendChild(document.createTextNode(p.getOre()[0].toStringOrario()));
-            intervallo.appendChild(orarioIniziale);
-            Element orarioFinale=document.createElement("orarioFinale");
-            orarioFinale.appendChild(document.createTextNode(p.getOre()[1].toStringOrario()));
-            intervallo.appendChild(orarioFinale);
+                Element orarioIniziale=document.createElement("orarioIniziale");
+                orarioIniziale.appendChild(document.createTextNode(x.getOre()[0].toStringOrario()));
+                intervallo.appendChild(orarioIniziale);
+                Element orarioFinale=document.createElement("orarioFinale");
+                orarioFinale.appendChild(document.createTextNode(x.getOre()[1].toStringOrario()));
+                intervallo.appendChild(orarioFinale);
+            }
+
+
 
             Element scadenza=document.createElement("scadenza");
             scadenza.appendChild(document.createTextNode(Integer.toString(p.getScadenza())));
