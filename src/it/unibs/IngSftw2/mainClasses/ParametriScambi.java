@@ -76,26 +76,38 @@ public class ParametriScambi {
         ArrayList<Giorno> giorni=new ArrayList<>();
         scelta=1;
         Giorno g;
+        boolean giornoCorretto=true;
+        int count=0;
         while(scelta!=0){
             do {
                 String giorno = Utilita.leggiStringaNonVuota("Inserisci il nome del giorno in cui vengono effettuati gli scambi:");
                 g = Giorno.getGiornoFromString(giorno);
-                if(g.equals(null)){
+                if(g==null){
                     System.out.println("Il giorno inserito è inesistente");
+                    giornoCorretto=false;
                 }
-            }while(g.equals(null));
-            giorni.add(g);
+                if(giorni.contains(g)){
+                    System.out.println("questo giorno è già stato inserito");
+                    giornoCorretto=false;
+                }
+                if(g!=null && !giorni.contains(g))
+                    count++;
+                giornoCorretto=true;
+            }while(count==0);
+            if(giornoCorretto){
+                giorni.add(g);
+            }
             scelta=Utilita.leggiIntero("Inserisci 1 per aggiungere un altro giorno, 0 altrimenti:",Menu.ZERO,Menu.UNO);
         }
 
         ArrayList<Intervallo> intervalli=new ArrayList<>();
-        Orario inizio;
-        Orario fine;
-        Orario[] orari=new Orario[]{};
-        scelta=0;
-        Intervallo intervallo;
+        scelta=1;
         while(scelta!=0){
+            boolean intervalloValido=false;
+            Orario inizio;
+            Orario fine;
             do {
+                Orario[] orari=new Orario[2];
                 boolean finito = false;
                 do {
                     int ora = Utilita.leggiIntero("Inserisci l'ora dell'inizio dell'intervallo(compresa tra 0 e 24):");
@@ -120,11 +132,18 @@ public class ParametriScambi {
                 } while (!finito);
                 orari[0]=inizio;
                 orari[1]=fine;
-                intervallo=new Intervallo(orari);
+                Intervallo intervallo=Intervallo.creaintervallo(orari);
                 if(!intervallo.intervalloValido()){
                     System.out.println("L'intervallo inserito non è valido");
+
                 }
-            }while(!intervallo.intervalloValido());
+                else{
+                    intervalli.add(intervallo);
+                    intervalloValido=true;
+                }
+
+
+            }while(!intervalloValido);
             scelta=Utilita.leggiIntero("Inserisci 1 per introdurre un nuovo intervallo, 0 altrimenti:");
         }
 

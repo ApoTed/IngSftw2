@@ -74,6 +74,7 @@ public class Orario {
         else{
             str.append(":30");
         }
+
         return str.toString();
     }
 
@@ -84,4 +85,5 @@ public class Orario {
     public int getMinuti() {
         return minuti;
     }
+
 }

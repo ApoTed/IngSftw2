@@ -23,10 +23,10 @@ public class main {
         Utente acceduto=x.menuAccesso();
         ArrayList <Gerarchia> gs=new ArrayList<>();
         Sistema sistema=new Sistema(gs);
-        ParametriScambi param=null;
+        ParametriScambi param=ParametriScambi.inserimentoParametri();
         File fileParametri=new File("parametriSalvati.xml");
         if(fileParametri.exists() && !fileParametri.isDirectory()){
-            param=XmlReader.leggiParametri("parametriSalvati.mxl");
+            param=XmlReader.leggiParametri("parametriSalvati.xml");
         }
         Configurazione conf=new Configurazione(sistema,param);
         File fileSistema = new File("sistema.xml");
