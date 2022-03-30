@@ -23,6 +23,8 @@ public class main {
         Utente acceduto=x.menuAccesso();
         ArrayList <Gerarchia> gs=new ArrayList<>();
         Sistema sistema=new Sistema(gs);
+        ParametriScambi param=null;
+        Configurazione conf=new Configurazione(sistema,param);
         File fileSistema = new File("sistema.xml");
         if(fileSistema.exists() && !fileSistema.isDirectory()) {
             sistema= XmlReader.readSis("sistema.xml");
@@ -32,7 +34,7 @@ public class main {
             String titolo="Benvenuto nel sistema di gestione baratti";
             String[] voci=new String[]{};
             Menu m=new Menu(titolo,voci);
-            m.MenuConfiguratore(sistema);
+            m.MenuConfiguratore(conf);
         }
         /**
         ArrayList<String> luoghi=new ArrayList<String>();

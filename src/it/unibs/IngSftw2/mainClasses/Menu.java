@@ -56,9 +56,9 @@ public class Menu {
 
     /**
      * Metodo per la gestione del menu del configuratore
-     * @param sistema il sistema su cui opera il configuratore
+     * @param conf il sistema su cui opera il configuratore
      */
-    public void MenuConfiguratore(Sistema sistema){
+    public void MenuConfiguratore(Configurazione conf){
         int risposta;
         this.setVoci(VOCI_Configuratore);
         do {
@@ -69,25 +69,25 @@ public class Menu {
                     boolean nomeRadiceNuovo=false;
                     do{
                         nomeRadice=Utilita.leggiStringaNonVuota("Inserisci il nome della radice della gerarchia:");
-                        if(sistema.checkNomeNuovoRadice(nomeRadice)){
+                        if(conf.getSis().checkNomeNuovoRadice(nomeRadice)){
                             nomeRadiceNuovo=true;
                         }
                         else
                             System.out.println("Questo nome è già presente");
                     }while(!nomeRadiceNuovo);
                     Gerarchia creata=Gerarchia.creaRamo(nomeRadice);
-                    sistema.addGerarchia(creata);
+                    conf.getSis().addGerarchia(creata);
                     break;
                 case 2 :
-                    System.out.println(sistema.toStringSistema());
-                    if(sistema.getListaGerarchie().size()==0){
+                    System.out.println(conf.getSis().toStringSistema());
+                    if(conf.getSis().getListaGerarchie().size()==0){
                         break;
                     }
                     int scelta=0;
                     do{
                         scelta=Utilita.leggiIntero("Inserisci 1 se vuoi visualizzare in dettaglio una categoria, 0 altrimenti:", ZERO, UNO);
                         if(scelta==1){
-                            Categoria toSee=Utilita.leggiCategoria(sistema);
+                            Categoria toSee=Utilita.leggiCategoria(conf.getSis());
                             if(toSee!=null){
                                 System.out.println(toSee.toStringCategoria());
                             }
@@ -114,7 +114,12 @@ public class Menu {
             switch (rispostaFruitore){
                 case 1 :
                     System.out.println(conf.getSis().toStringRadici());
-                    System.out.println(conf.getParametri().toStringParametri());
+                    if(conf.getParametri().equals(null)){
+                        System.out.println("I parametri di configurazione non sono ancora stati settati");
+                    }
+                    else{
+                        System.out.println(conf.getParametri().toStringParametri());
+                    }
                     break;
                 default:
                     break;
