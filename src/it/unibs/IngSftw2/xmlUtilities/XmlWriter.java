@@ -156,6 +156,11 @@ public class XmlWriter {
         }
     }
 
+    /**
+     * metodo per il salvataggio xml dei parametri
+     * @param p parametri da salvare
+     * @param filename nom file xml su cui salvare
+     */
     public static void salvaParametri(ParametriScambi p, String filename){
         try{
             DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();

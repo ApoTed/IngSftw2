@@ -105,7 +105,7 @@ public class Utilita {
     /**
      * Metodo per la lettura di una categoria in input
      * @param sistema il sistema in cui cercare la categoria
-     * @return la categoria cercata
+     * @return la categoria cercata, null se non è presente
      */
     public static Categoria leggiCategoria(Sistema sistema){
         Categoria trovata=null;

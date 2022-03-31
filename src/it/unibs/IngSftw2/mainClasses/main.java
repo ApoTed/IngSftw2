@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class main {
 
     public static void main(String[] args) throws XMLStreamException, ParserConfigurationException {
-        // TODO Auto-generated method stubss
+        // TODO Auto-generated method stubsss
         ArrayList <Utente> l=new ArrayList<Utente>();
         DatiUtenti x=new DatiUtenti(l);
         File fileUtenti = new File("listaUtenti.xml");

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Classe per la gestione degli utenti del sistema
- * @author Jacopo Tedeschi,Enrico Zambelli
+ * @author Jacopo Tedeschi, Enrico Zambelli
  */
 public class DatiUtenti {
     public static final String CATEGORIA_NON_PRESENTE = "Categoria non presente";

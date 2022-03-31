@@ -2,7 +2,7 @@ package it.unibs.IngSftw2.mainClasses;
 
 /**
  * Classe per la gestione di un utente
- *  @author Jacopo Tedeschi,Enrico Zambelli
+ *  @author Jacopo Tedeschi, Enrico Zambelli
  */
 public class Utente {
 

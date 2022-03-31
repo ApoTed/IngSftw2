@@ -47,7 +47,7 @@ public class Gerarchia {
 
     /**
      * Metodo per la creazione della gerarchia da parte del configuratore
-     * @param nomeRadice nome della radice che viene chiesto prima della creazione per verificarne la validità le altre radici
+     * @param nomeRadice nome della radice che viene chiesto prima della creazione per verificarne la validità rispetto alle radici già presenti
      * @return finale la gerarchia creata
      */
     public static Gerarchia creaRamo(String nomeRadice){

@@ -2,6 +2,9 @@ package it.unibs.IngSftw2.mainClasses;
 
 import java.util.ArrayList;
 
+/**
+ * calsse per la gestione dei parametri
+ */
 public class ParametriScambi {
     private String piazza;
     private ArrayList<String> luoghi = new ArrayList<>();
@@ -192,7 +195,7 @@ public class ParametriScambi {
     }
 
     public void modificaParamentri(){
-        int choise=Utilita.leggiIntero("inserisci 1 per aggiungere un luogo\n" +
+        int choise=Utilita.leggiIntero("inserisci\n 1 per aggiungere un luogo\n" +
                 "2 per aggiungere un intervallo\n" +
                 "3 per aggiungere un giorno\n" +
                 "4 per cambiare la scadenza:",1,4);

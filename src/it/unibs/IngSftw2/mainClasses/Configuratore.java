@@ -2,7 +2,7 @@ package it.unibs.IngSftw2.mainClasses;
 
 /**
  * Classe per la gestione del configuratore
- * @author Enrico Zambelli,Jacopo Tedeschi
+ * @author Enrico Zambelli, Jacopo Tedeschi
  */
 public class Configuratore extends Utente {
     /**

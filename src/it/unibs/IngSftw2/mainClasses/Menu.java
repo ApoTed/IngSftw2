@@ -3,7 +3,7 @@ package it.unibs.IngSftw2.mainClasses;
 
 /**
  * Classe per la gestione dei menu
- *  @author Jacopo Tedeschi,Enrico Zambelli
+ *  @author Jacopo Tedeschi, Enrico Zambelli
  */
 public class Menu {
 

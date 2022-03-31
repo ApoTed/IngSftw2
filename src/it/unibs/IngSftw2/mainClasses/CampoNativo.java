@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Classe per la gestione di un campo nativo.
- * @author Jacopo Tedeschi,Enrico Zambelli
+ * @author Jacopo Tedeschi, Enrico Zambelli
  */
 public class CampoNativo {
     private String nomeCampo;

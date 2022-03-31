@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 /**
  * Classe per la gestione di una categoria.
- * @author Jacopo Tedeschi,Enrico Zambelli
+ * @author Jacopo Tedeschi, Enrico Zambelli
  */
 public class Categoria {
     private String nome;

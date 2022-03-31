@@ -222,6 +222,12 @@ public class XmlReader {
         return sis;
     }
 
+    /**
+     * metodo per la lettura dei parametri salvati in xml
+     * @param filename nome file xml da cui leggere i dati
+     * @return
+     * @throws XMLStreamException
+     */
     public static DatiUtenti leggiUtenti(String filename) throws XMLStreamException {
         ArrayList <Utente> listaUtenti = new ArrayList<>();
         XMLInputFactory xmlif = null;
