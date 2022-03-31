@@ -56,7 +56,7 @@ public class Menu {
 
     /**
      * Metodo per la gestione del menu del configuratore
-     * @param conf il sistema su cui opera il configuratore
+     * @param conf la configurazione su cui opera il configuratore
      */
     public void MenuConfiguratore(Configurazione conf){
         int risposta;
@@ -106,6 +106,10 @@ public class Menu {
 
     }
 
+    /**
+     * Metodo per la gestione del menu del fruitore
+     * @param conf la configurazione su cui opera il fruitore
+     */
     public void MenuFruitore(Configurazione conf){
         int rispostaFruitore;
         this.setVoci(VOCI_Fruitore);

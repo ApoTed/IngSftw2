@@ -12,14 +12,6 @@ public class Gerarchia {
     private HashMap <Categoria, Categoria> ramo= new HashMap<Categoria,Categoria>();
     private Categoria radice;
 
-    public HashMap<Categoria, Categoria> getRamo() {
-        return ramo;
-    }
-
-    public Categoria getRadice() {
-        return radice;
-    }
-
     /**
      * Costruttore della classe gerarchia
      * @param _ramo hashMap formata da una categoria e dalla sua categoria padre
@@ -35,6 +27,22 @@ public class Gerarchia {
      */
     public Gerarchia(){
 
+    }
+
+    /**
+     * Metodo get per il ramo di una gerarchia
+     * @return i ramo della categoria
+     */
+    public HashMap<Categoria, Categoria> getRamo() {
+        return ramo;
+    }
+
+    /**
+     * Metodo get per la radice di una gerarchia
+     * @return la radice della gerarchia
+     */
+    public Categoria getRadice() {
+        return radice;
     }
 
     /**

@@ -2,6 +2,10 @@ package it.unibs.IngSftw2.mainClasses;
 
 import java.util.ArrayList;
 
+/**
+ * Classe per la gestione dei parametri degli scambi
+ * @author Jacopo Tedeschi,Enrico Zambelli
+ */
 public class ParametriScambi {
     private String piazza;
     private ArrayList <String> luoghi=new ArrayList<>();
@@ -9,6 +13,14 @@ public class ParametriScambi {
     private ArrayList <Intervallo> intervalli=new ArrayList<>();
     private int scadenza;
 
+    /**
+     * Costruttore della classe ParametriScambi
+     * @param _piazza la piazza in cui avvengono gli scambi
+     * @param _luoghi i luoghi della piazza in cui avvengono gli scambi
+     * @param _giorni i giorni in cui avvengono gli scambi
+     * @param _intervalli gli intervalli di tempo in cui avvengono gli scambi
+     * @param _scadenza il numero massimo di giorni entro cui un fruitore può accettare una proposta di scambio
+     */
     public ParametriScambi(String _piazza, ArrayList <String> _luoghi, ArrayList <Giorno> _giorni, ArrayList<Intervallo> _intervalli, int _scadenza){
         this.giorni=_giorni;
         this.intervalli=_intervalli;
@@ -17,26 +29,46 @@ public class ParametriScambi {
         this.scadenza=_scadenza;
     }
 
+    /**
+     * Metodo get per i luoghi di scambio
+     * @return i luoghi di scambio
+     */
     public ArrayList<String> getLuoghi() {
         return luoghi;
     }
-
+    /**
+     * Metodo get per la piazza di scambio
+     * @return la piazza di scambio
+     */
     public String getPiazza() {
         return piazza;
     }
-
+    /**
+     * Metodo get per i giorni di scambio
+     * @return i giorni di scambio
+     */
     public ArrayList<Giorno> getGiorni() {
         return giorni;
     }
-
+    /**
+     * Metodo get per gli intervalli di scambio
+     * @return gli intervalli di scambio
+     */
     public ArrayList<Intervallo> getIntervalli() {
         return intervalli;
     }
-
+    /**
+     * Metodo get per la scadenza di accettazione
+     * @return la scadenza di accettazione
+     */
     public int getScadenza() {
         return scadenza;
     }
 
+    /**
+     * Metodo che restituisce la stringa corrispondente alla descrizione dei parametri
+     * @return la stringa di visualizzazione dei parametri
+     */
     public String toStringParametri(){
         StringBuffer stb=new StringBuffer();
         stb.append("Piazza: "+this.piazza);
@@ -64,6 +96,10 @@ public class ParametriScambi {
         return stb.toString();
     }
 
+    /**
+     * Metodo statico per l'inserimento dei parametri del sistema per la prima volta
+     * @return i parametri di scambio inseriti
+     */
     public static ParametriScambi inserimentoParametri(){
         String piazza=Utilita.leggiStringaNonVuota("Inserisci il nome della città in cui avvengono gli scambi:");
         int scelta=1;
@@ -87,7 +123,7 @@ public class ParametriScambi {
                     giornoCorretto=false;
                 }
                 if(giorni.contains(g)){
-                    System.out.println("questo giorno è già stato inserito");
+                    System.out.println("Questo giorno è già stato inserito");
                     giornoCorretto=false;
                 }
                 if(g!=null && !giorni.contains(g))

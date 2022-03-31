@@ -1,18 +1,31 @@
 package it.unibs.IngSftw2.mainClasses;
 
+/**
+ * Classe per la gestione di un orario
+ * @author Jacopo Tedeschi,Enrico Zambelli
+ */
 public class Orario {
     private int ora;
     private int minuti;
 
+    /**
+     * Costruttore della classe orario
+     * @param _ora l'ora dell'orario
+     * @param _minuti i minuti dell'orario
+     */
     public Orario(int _ora, int _minuti){
         this.minuti=_minuti;
         this.ora =_ora;
     }
 
+    /**
+     * Metodo che controlla se un orario è valido(ora compresa tra 0 e 23,minuti uguali a 00 o 30)
+     * @return true se l'orario è valido, false altrimenti
+     */
     public boolean orarioValido(){
         boolean valido=false;
         if(this.minuti==0 || this.minuti==30){
-            if(this.ora >=0 && this.ora <=24){
+            if(this.ora >=0 && this.ora <=23){
                 valido=true;
             }
         }
@@ -20,11 +33,12 @@ public class Orario {
     }
 
     /**
-     * metodo che applicato sull'orario di apertura controlla che l'intervallo esista
-     * @param end orario fine intervallo
-     * @return true se è valido
+     * Metodo che applicato sull'orario controlla che sia all'interno dell'orario passato in ingresso
+     * @param o1 orario inizio intervallo
+     * @param o2 orario fine intervallo
+     * @return true se è all'interno, false altrimenti
      */
-
+// volendo si può spostare in intervallo
     public boolean isInsideIntervallo(Orario o1, Orario o2){
         boolean dentro=false;
         if(o1.ora ==this.ora && this.ora ==o2.ora){
@@ -46,6 +60,11 @@ public class Orario {
         return dentro;
     }
 
+    /**
+     * Metodo che restituisce l'orario corrispondente alla stringa in ingresso
+     * @param ora la stringa da cui ricavare l'orario
+     * @return l'orario corrispondete alla stringa
+     */
     public static Orario getOrarioFromString(String ora){
         StringBuffer sb=new StringBuffer();
         sb.append(ora.charAt(0));
@@ -59,6 +78,10 @@ public class Orario {
         return or;
     }
 
+    /**
+     * Metodo che restituisce una stringa corrispondente all'orario
+     * @return la stringa dell'orario su cui viene invocato
+     */
     public String toStringOrario(){
         StringBuilder str = new StringBuilder();
         if(this.ora <10){
@@ -78,10 +101,17 @@ public class Orario {
         return str.toString();
     }
 
+    /**
+     * Metodo get per l'ora di un orario
+     * @return l'ora dell'orario
+     */
     public int getOra() {
         return ora;
     }
-
+    /**
+     * Metodo get per i minuti di un orario
+     * @return i minuti dell'orario
+     */
     public int getMinuti() {
         return minuti;
     }

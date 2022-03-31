@@ -11,6 +11,8 @@ public class DatiUtenti {
     public static final String INSERISCI_NOME = "Inserisci il tuo nome: ";
     public static final String INSERISCI_PASSWORD = "Inserisci la tua password: ";
     public static final Utente CREDENZIALI_PREDEFINITE=new Configuratore("bello", "12");
+    public static final String NOME_NON_DISPONIBILE = "Questo nome utente non è disponibile";
+    public static final String NUOVA_PASSWORD = "Inserisci la tua nuova password";
     private ArrayList <Utente> listaUtenti = new ArrayList <Utente>();
 
 
@@ -25,23 +27,23 @@ public class DatiUtenti {
 
     /**
      * metodo per la gestione dell'accesso
-     * @return l'utente che ha eseguito correttamente l'accesso null se l'accesso è fallisto
+     * @return l'utente che ha eseguito correttamente l'accesso null se l'accesso è fallito
      */
     public Utente menuAccesso() {
         boolean successo=false;
         //chiedi se è un nuovo fruitore
         //fruitore inserisci le tue nove credeziali
-        int scelta=Utilita.leggiIntero("inserisci 1 se sei un nuovo fruitore e vuoi registrarti, 0 altrimenti",0,1);
+        int scelta=Utilita.leggiIntero("Inserisci 1 se sei un nuovo fruitore e vuoi registrarti, 0 altrimenti:",0,1);
         String username=null;
         String password=null;
         if(scelta==1){
             do{
                 username=Utilita.leggiStringaNonVuota("Inserisci il nome con cui vuoi registrarti");
                 if(this.checkName(username)){
-                    System.out.println("questo nome non è disponibile");
+                    System.out.println(NOME_NON_DISPONIBILE);
                 }
             }while(this.checkName(username));
-            password=Utilita.leggiStringaNonVuota("Inserisci la tua password");
+            password=Utilita.leggiStringaNonVuota(NUOVA_PASSWORD);
             this.addUtente(username,password,false);
         }
         else{
@@ -54,10 +56,10 @@ public class DatiUtenti {
             do {
                 newUsername=Utilita.leggiStringaNonVuota("Inserisci il tuo nuovo nome utente");
                 if(this.checkName(newUsername)==true)
-                    System.out.println("Questo nome utente non è disponibile");
+                    System.out.println(NOME_NON_DISPONIBILE);
             }while(this.checkName(newUsername)==true);
 
-            String newPassword=Utilita.leggiStringaNonVuota("Inserisci la tua nuova password");
+            String newPassword=Utilita.leggiStringaNonVuota(NUOVA_PASSWORD);
             this.addUtente(newUsername, newPassword, true);
             temp=new Configuratore(newUsername, newPassword);
 
@@ -74,10 +76,10 @@ public class DatiUtenti {
                     do {
                         newUsername=Utilita.leggiStringaNonVuota("Inserisci il tuo nuovo nome utente");
                         if(this.checkName(newUsername)==true)
-                            System.out.println("Questo nome utente non è disponibile");
+                            System.out.println(NOME_NON_DISPONIBILE);
                     }while(this.checkName(newUsername)==true);
 
-                    String newPassword=Utilita.leggiStringaNonVuota("Inserisci la tua nuova password");
+                    String newPassword=Utilita.leggiStringaNonVuota(NUOVA_PASSWORD);
                     this.addUtente(newUsername, newPassword, true);
                     temp=new Configuratore(newUsername, newPassword);
 
@@ -197,6 +199,12 @@ public class DatiUtenti {
         this.listaUtenti = listaUtenti;
     }
 
+    /**
+     * Metodo per ottenere un utente dalle sue credenziali
+     * @param name lo username dell'utente da cercare
+     * @param password la password dell'utente da cercare
+     * @return l'utente che ha per credenziali quelle inserite
+     */
     public Utente getUtenteDaCredenziali(String name, String password){
         for(Utente x: this.listaUtenti){
             if(x.getUsername().equals(name) && x.getPassword().equals(password)){

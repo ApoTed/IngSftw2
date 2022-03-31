@@ -85,6 +85,10 @@ public class Sistema {
         return valido;
     }
 
+    /**
+     * Metodo che restituisce la lista delle radici del sistema
+     * @return la lista delle radici del sistema su cui viene invocato
+     */
     public ArrayList<Categoria> getListaRadici(){
         ArrayList<Categoria> radici=new ArrayList<Categoria>();
         for(Gerarchia g:this.listaGerarchie){
@@ -93,6 +97,10 @@ public class Sistema {
         return radici;
     }
 
+    /**
+     * Metodo che restituisce la stringa corrispondente alla lista delle radici
+     * @return la stringa delle descrizioni delle radici del sistema
+     */
     public String toStringRadici(){
         StringBuffer stb=new StringBuffer();
         for(Categoria c:this.getListaRadici()){
