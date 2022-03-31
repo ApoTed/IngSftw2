@@ -89,10 +89,10 @@ public class Menu {
                     if(conf.getSis().getListaGerarchie().size()==0){
                         break;
                     }
-                    int scelta=0;
+                    int sceltaCat=0;
                     do{
-                        scelta=Utilita.leggiIntero("Inserisci 1 se vuoi visualizzare in dettaglio una categoria, 0 altrimenti:", ZERO, UNO);
-                        if(scelta==1){
+                        sceltaCat=Utilita.leggiIntero("Inserisci 1 se vuoi visualizzare in dettaglio una categoria, 0 altrimenti:", ZERO, UNO);
+                        if(sceltaCat==1){
                             Categoria toSee=Utilita.leggiCategoria(conf.getSis());
                             if(toSee!=null){
                                 System.out.println(toSee.toStringCategoria());
@@ -100,7 +100,8 @@ public class Menu {
                         }
 
 
-                    }while(scelta==1);
+                    }while(sceltaCat==1);
+                    break;
                 case 3:
                     conf.getParametri().modificaParamentri();
                     break;
@@ -123,8 +124,8 @@ public class Menu {
             rispostaFruitore = this.scegli();
             switch (rispostaFruitore){
                 case 1 :
-                    System.out.println(conf.getSis().toStringRadici());
-                    if(conf.getParametri().equals(null)){
+                    System.out.println(conf.getSis().visualizzaRadici());
+                    if(conf.getParametri()==null){
                         System.out.println("I parametri di configurazione non sono ancora stati settati");
                     }
                     else{

@@ -215,7 +215,7 @@ public class Gerarchia {
             }
         }
         if(this.numFigli(this.radice)==0){
-            System.out.println("non ha sottocategorie");
+            s.append("Non ha sottocategorie");
         }
         else{
             s.append("Le sottocategorie di "+this.radice.getNome()+ " sono: ");

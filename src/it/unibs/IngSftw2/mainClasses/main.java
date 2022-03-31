@@ -32,20 +32,26 @@ public class main {
         else{
             parametriFatti=false;
         }
-        Configurazione conf=new Configurazione(sistema,param);
         File fileSistema = new File("sistema.xml");
         if(fileSistema.exists() && !fileSistema.isDirectory()) {
             sistema= XmlReader.readSis("sistema.xml");
         }
+        if(!parametriFatti){
+            param=ParametriScambi.inserimentoParametri();
+        }
+        Configurazione conf=new Configurazione(sistema,param);
 
         if(acceduto instanceof Configuratore){
             String titolo="Benvenuto nel sistema di gestione baratti";
             String[] voci=new String[]{};
-            if(!parametriFatti){
-                param=ParametriScambi.inserimentoParametri();
-            }
             Menu m=new Menu(titolo,voci);
             m.MenuConfiguratore(conf);
+        }
+        if(acceduto instanceof  Fruitore){
+            String titolo="Benvenuto nel sistema di gestione baratti";
+            String[] voci=new String[]{};
+            Menu m=new Menu(titolo,voci);
+            m.MenuFruitore(conf);
         }
 
        /* ArrayList<String> luoghi=new ArrayList<String>();

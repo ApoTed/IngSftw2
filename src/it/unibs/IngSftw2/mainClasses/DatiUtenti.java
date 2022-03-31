@@ -33,7 +33,7 @@ public class DatiUtenti {
         boolean successo=false;
         //chiedi se è un nuovo fruitore
         //fruitore inserisci le tue nove credeziali
-        int scelta=Utilita.leggiIntero("Inserisci 1 se sei un nuovo fruitore e vuoi registrarti, 0 altrimenti:",0,1);
+        int scelta=Utilita.leggiIntero("Inserisci 1 se sei un nuovo fruitore e vuoi registrarti, 0 altrimenti: ",0,1);
         String username=null;
         String password=null;
         if(scelta==1){

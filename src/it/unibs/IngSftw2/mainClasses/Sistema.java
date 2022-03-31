@@ -97,16 +97,29 @@ public class Sistema {
         return radici;
     }
 
+
     /**
-     * Metodo che restituisce la stringa corrispondente alla lista delle radici
-     * @return la stringa delle descrizioni delle radici del sistema
+     * metodo per la visualizzazione delle radici del sistema
+     * @return la stringa con le informazioni sulle radici del sistema
      */
-    public String toStringRadici(){
-        StringBuffer stb=new StringBuffer();
-        for(Categoria c:this.getListaRadici()){
-            stb.append(c.toStringCategoria()+"\n");
+    public String visualizzaRadici(){
+        StringBuffer str=new StringBuffer();
+        if(this.getListaGerarchie().size()==0){
+            str.append("siamo spiacenti ma il configuratore non ha settato alcuna gerarchia per ora");
         }
-        return stb.toString();
+        else{
+            if(this.getListaGerarchie().size()==1){
+                str.append("Esiste una sola gerarchia e questa è la sua radice: \n"+this.getListaGerarchie().get(0).getRadice().toStringCategoria());
+            }
+            else{
+                str.append("Le radici di ogni gerarchia sono:\n ");
+                int count=0;
+                for(Gerarchia x:this.getListaGerarchie()){
+                    str.append("1. "+x.getRadice().toStringCategoria()+"\n");
+                }
+            }
+        }
+        return str.toString();
     }
 
 }

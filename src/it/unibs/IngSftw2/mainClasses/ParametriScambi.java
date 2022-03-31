@@ -63,7 +63,7 @@ public class ParametriScambi {
             stb.append("\nOrario: " + x.getOre()[0].toStringOrario() + "-" + x.getOre()[1].toStringOrario());
         }
 
-        //stb.append("\nScadenza: " + scadenza);
+        stb.append("\nScadenza: " + scadenza);
         return stb.toString();
     }
 
@@ -226,7 +226,7 @@ public class ParametriScambi {
     }
 
     public void addScadenza(){
-        int scad=Utilita.leggiIntero("inserisci la nuova scadenza: ");
+        int scad=Utilita.leggiIntero("inserisci la nuova scadenza: ",1,999999);
         this.scadenza=scad;
     }
     public void addLuogo(){

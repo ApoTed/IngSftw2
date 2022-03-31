@@ -65,7 +65,7 @@ public class Categoria {
      */
     public String toStringCategoria() {
         StringBuffer str = new StringBuffer();
-        str.append(this.nome + " : " + this.descrizione + "\n");
+        str.append("Il nome è: "+this.nome + " e la sua descrizione è: " + this.descrizione + "\n");
 
         if (!campiNativi.isEmpty()) {
             str.append("Campi Nativi : \n");
