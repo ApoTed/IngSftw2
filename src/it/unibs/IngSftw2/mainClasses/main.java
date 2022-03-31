@@ -23,10 +23,14 @@ public class main {
         Utente acceduto=x.menuAccesso();
         ArrayList <Gerarchia> gs=new ArrayList<>();
         Sistema sistema=new Sistema(gs);
-        ParametriScambi param=ParametriScambi.inserimentoParametri();
+        ParametriScambi param=null;
         File fileParametri=new File("parametriSalvati.xml");
+        boolean parametriFatti=true;
         if(fileParametri.exists() && !fileParametri.isDirectory()){
             param=XmlReader.leggiParametri("parametriSalvati.xml");
+        }
+        else{
+            parametriFatti=false;
         }
         Configurazione conf=new Configurazione(sistema,param);
         File fileSistema = new File("sistema.xml");
@@ -37,8 +41,11 @@ public class main {
         if(acceduto instanceof Configuratore){
             String titolo="Benvenuto nel sistema di gestione baratti";
             String[] voci=new String[]{};
+            if(!parametriFatti){
+                param=ParametriScambi.inserimentoParametri();
+            }
             Menu m=new Menu(titolo,voci);
-            //m.MenuConfiguratore(conf);
+            m.MenuConfiguratore(conf);
         }
 
        /* ArrayList<String> luoghi=new ArrayList<String>();
@@ -53,8 +60,8 @@ public class main {
         System.out.println(p.toStringParametri());
         */
         System.out.println("\nFINE PROGRAMMA");
-        XmlWriter.salvaParametri(param,"parametriSalvati.xml");
-        XmlWriter.salvaSistema(sistema, "sistema.xml");
+        XmlWriter.salvaParametri(conf.getParametri(),"parametriSalvati.xml");
+        XmlWriter.salvaSistema(conf.getSis(), "sistema.xml");
         XmlWriter.utentiWrite(x, "listaUtenti.xml");
 
     }

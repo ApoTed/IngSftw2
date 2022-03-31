@@ -34,4 +34,7 @@ public class Configurazione {
         return parametri;
     }
 
+    public void setParametri(ParametriScambi parametri) {
+        this.parametri = parametri;
+    }
 }

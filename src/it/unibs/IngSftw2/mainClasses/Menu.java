@@ -11,7 +11,7 @@ public class Menu {
     final private static String CORNICE = "--------------------------------";
     final private static String VOCE_USCITA = "0\tEsci";
     final private static String RICHIESTA_INSERIMENTO = "Digita il numero dell'opzione desiderata : ";
-    final private static String[] VOCI_Configuratore = new String[]{"Inserimento nuova gerarchia","Visualizzazione delle gerarchie","Inserimento dei parametri degli scambi"};
+    final private static String[] VOCI_Configuratore = new String[]{"Inserimento nuova gerarchia","Visualizzazione delle gerarchie","Modifica dei parametri"};
     public static final String[] VOCI_Fruitore = new String[]{"Visualizza le radici e i parametri di sistema"};
     public static final int ZERO = 0;
     public static final int UNO = 1;
@@ -76,7 +76,8 @@ public class Menu {
                             System.out.println("Questo nome è già presente");
                     }while(!nomeRadiceNuovo);
                     Gerarchia creata=Gerarchia.creaRamo(nomeRadice);
-                    conf.getSis().addGerarchia(creata);
+                    //conf.getSis().addGerarchia(creata);
+                    conf.getSis().getListaGerarchie().add(creata);
                     break;
                 case 2 :
                     System.out.println(conf.getSis().toStringSistema());
@@ -96,7 +97,7 @@ public class Menu {
 
                     }while(scelta==1);
                 case 3:
-                    //metodo per l'inserimento dei parametri
+                    conf.getParametri().modificaParamentri();
                     break;
                 default:
                     break;
@@ -131,6 +132,7 @@ public class Menu {
             }
         }while(rispostaFruitore !=0);
     }
+
 
     /**
      * Metodo get per le voci del menu

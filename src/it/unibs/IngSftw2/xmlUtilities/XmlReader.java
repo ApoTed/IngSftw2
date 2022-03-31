@@ -289,8 +289,8 @@ public class XmlReader {
                             listaUtenti.add(c);
                         }
                         else{
-                            Utente u=new Utente(username,password);
-                            listaUtenti.add(u);
+                            Fruitore f=new Fruitore(username,password);
+                            listaUtenti.add(f);
                         }
 
                     }
