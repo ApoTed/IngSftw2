@@ -61,7 +61,10 @@ public class main {
         */
         System.out.println("\nFINE PROGRAMMA");
         XmlWriter.salvaParametri(conf.getParametri(),"parametriSalvati.xml");
-        XmlWriter.salvaSistema(conf.getSis(), "sistema.xml");
+        if(conf.getSis().getListaGerarchie().size()!=0){
+            XmlWriter.salvaSistema(conf.getSis(), "sistema.xml");
+        }
+
         XmlWriter.utentiWrite(x, "listaUtenti.xml");
 
     }

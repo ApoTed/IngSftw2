@@ -59,10 +59,15 @@ public class Menu {
      * @param conf la configurazione su cui opera il configuratore
      */
     public void MenuConfiguratore(Configurazione conf){
-        int risposta;
+        int risposta=1;
         this.setVoci(VOCI_Configuratore);
         do {
-            risposta = this.scegli();
+            if(conf.getSis().getListaGerarchie().size()==0){
+                risposta=1;
+                System.out.println("Il sistema non presenta alcuna gerarchia, inserisci una gerarchia, in futuro potrai aggiungerne altre");
+            }
+            else
+                risposta = this.scegli();
             switch (risposta){
                 case 1 :
                     String nomeRadice;

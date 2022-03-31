@@ -29,6 +29,15 @@ public class Intervallo {
         return  i;
     }
 
+    public boolean compareIntervalllo(Intervallo toCompare) {
+        boolean uguale=false;
+        if (this.ore[0].getOra() == toCompare.ore[0].getOra() && this.ore[0].getMinuti() == toCompare.ore[0].getMinuti() &&
+                this.ore[1].getOra()==toCompare.ore[1].getOra() && this.ore[1].getMinuti()==toCompare.ore[1].getMinuti()) {
+            uguale = true;
+        }
+        return uguale;
+    }
+
     public void setOre(Orario[] ore) {
         this.ore = ore;
     }

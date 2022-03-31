@@ -158,11 +158,33 @@ public class ParametriScambi {
             } else {
                 intervalloValido = true;
             }
-
-
         } while (!intervalloValido);
         return intervallo;
 
+    }
+
+    public void togliIntervallo(){
+        Intervallo toRemove=ParametriScambi.addIntervallo();
+        boolean presente=false;
+        int countI=0;
+        for(Intervallo x: this.intervalli){
+            if(!presente){
+                countI++;
+            }
+            if(x.compareIntervalllo(toRemove)){
+                presente=true;
+            }
+
+        }
+        if (presente) {
+            this.intervalli.remove(countI-1);
+            if(this.intervalli.size()==0){
+                System.out.println("ci deve essere almeno un intervallo quindi aggiungi un intervallo");
+                this.intervalli.add(ParametriScambi.addIntervallo());
+            }
+        }
+        else
+            System.out.println("l'intervallo inserito non è presente");
     }
 
     public void addGiorno() {
@@ -185,29 +207,75 @@ public class ParametriScambi {
         this.giorni.add(g);
     }
 
+    public void togliGionro(){
+        String nomeGiorno=Utilita.leggiStringaNonVuota("Inserisci il nome del giorno da rimuovere: ");
+        Giorno toRemove=Giorno.getGiornoFromString(nomeGiorno);
+        boolean gironoEsiste=false;
+        if(toRemove!=null ){
+            if(this.giorni.contains(toRemove)){
+               giorni.remove(toRemove);
+               gironoEsiste=true;
+            }
+        }
+        if(!gironoEsiste)
+            System.out.println("il giorno inserito non è presente o il dato inserito non è corretto");
+        if(this.giorni.size()==0){
+            System.out.println("deve esserci almeno un giorno quindi inserisci un giorno");
+            this.addGiorno();
+        }
+    }
+
     public void addScadenza(){
-        int scad=Utilita.leggiIntero("inserisci la nuova scadenza");
+        int scad=Utilita.leggiIntero("inserisci la nuova scadenza: ");
         this.scadenza=scad;
     }
     public void addLuogo(){
-        String luogo=Utilita.leggiStringaNonVuota("Inserisci il nuovo luogo:");
+        String luogo=Utilita.leggiStringaNonVuota("Inserisci il nuovo luogo: ");
         this.luoghi.add(luogo);
     }
 
+    public void togliLuogo(){
+        String luogoToRemove=Utilita.leggiStringaNonVuota("inserisci il nome del luogo da togliere");
+        if(this.luoghi.contains(luogoToRemove)){
+            this.luoghi.remove(luogoToRemove);
+        }
+        else{
+            System.out.println("questo luogo non è tra i luoghi presenti");
+        }
+        if(this.luoghi.size()==0){
+            String luogoMinimo=Utilita.leggiStringaNonVuota("Deve esserci sempre almeno un luogo quindi aggiungi un luogo: ");
+            this.luoghi.add(luogoMinimo);
+        }
+    }
+
     public void modificaParamentri(){
-        int choise=Utilita.leggiIntero("inserisci\n 1 per aggiungere un luogo\n" +
-                "2 per aggiungere un intervallo\n" +
-                "3 per aggiungere un giorno\n" +
-                "4 per cambiare la scadenza:",1,4);
+        System.out.println("Questi sono i parametri:\n"+this.toStringParametri()+"\n");
+        int choise=Utilita.leggiIntero("Inserisci\n1 per modificare i luoghi\n" +
+                "2 per modificare gli intervalli\n" +
+                "3 per modificare i giorni\n" +
+                "4 per cambiare la scadenza: ",1,4);
+
         switch(choise){
             case 1:
-                this.addLuogo();
+                int choiceL=Utilita.leggiIntero("Inserisci 1 se vuoi aggiungere 2 se vuoi togliere: ",1,2);
+                if(choiceL==1)
+                    this.addLuogo();
+                else
+                    this.togliLuogo();
                 break;
             case 2:
-                this.intervalli.add(ParametriScambi.addIntervallo());
+                int choiceI=Utilita.leggiIntero("Inserisci 1 se vuoi aggiungere 2 se vuoi togliere: ",1,2);
+                if(choiceI==1)
+                    this.intervalli.add(ParametriScambi.addIntervallo());
+                else
+                    this.togliIntervallo();
                 break;
             case 3:
-                this.addGiorno();
+                int choiceG=Utilita.leggiIntero("Inserisci 1 se vuoi aggiungere 2 se vuoi togliere: ",1,2);
+                if(choiceG==1)
+                    this.addGiorno();
+                else
+                    this.togliGionro();
                 break;
             case 4:
                 this.addScadenza();
