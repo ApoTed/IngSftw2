@@ -1,13 +1,14 @@
 package it.unibs.IngSftw2.mainClasses;
 /**
- * classe per la gestione del fruitore
+ * Classe per la gestione del fruitore
+ * @author Jacopo Tedeschi, Enrico Zambelli
  */
 public class Fruitore  extends Utente{
 
     /**
      * Costruttore della classe utente
-     * @param _username il nome dell'utente
-     * @param _password la password dell'utente
+     * @param _username il nome del fruitore
+     * @param _password la password del fruitore
      */
     public Fruitore(String _username, String _password) {
         super(_username, _password);

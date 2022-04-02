@@ -103,7 +103,7 @@ public class Menu {
                     }while(sceltaCat==1);
                     break;
                 case 3:
-                    conf.getParametri().modificaParamentri();
+                    conf.getParametri().modificaParametri();
                     break;
                 default:
                     break;

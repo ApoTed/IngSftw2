@@ -3,7 +3,8 @@ package it.unibs.IngSftw2.mainClasses;
 import java.util.ArrayList;
 
 /**
- * calsse per la gestione dei parametri
+ * Classe per la gestione dei parametri degli scambi
+ * @author Jacopo Tedeschi,Enrico Zambelli
  */
 public class ParametriScambi {
     private String piazza;
@@ -12,6 +13,14 @@ public class ParametriScambi {
     private ArrayList<Intervallo> intervalli = new ArrayList<>();
     private int scadenza;
 
+    /**
+     * Costruttore della classe ParametriScambi
+     * @param _piazza la piazza in cui avvengono gli scambi
+     * @param _luoghi i luoghi della piazza in cui avvengono gli scambi
+     * @param _giorni i giorni in cui avvengono gli scambi
+     * @param _intervalli gli intervalli di tempo in cui avvengono gli scambi
+     * @param _scadenza il numero massimo di giorni entro cui un fruitore può accettare una proposta di scambio
+     */
     public ParametriScambi(String _piazza, ArrayList<String> _luoghi, ArrayList<Giorno> _giorni, ArrayList<Intervallo> _intervalli, int _scadenza) {
         this.giorni = _giorni;
         this.intervalli = _intervalli;
@@ -19,27 +28,50 @@ public class ParametriScambi {
         this.luoghi = _luoghi;
         this.scadenza = _scadenza;
     }
-
+    /**
+     * Metodo get per i luoghi di scambio
+     * @return i luoghi di scambio
+     */
     public ArrayList<String> getLuoghi() {
         return luoghi;
     }
 
+    /**
+     * Metodo get per la piazza di scambio
+     * @return la piazza di scambio
+     */
     public String getPiazza() {
         return piazza;
     }
 
+    /**
+     * Metodo get per i giorni di scambio
+     * @return i giorni di scambio
+     */
     public ArrayList<Giorno> getGiorni() {
         return giorni;
     }
 
+    /**
+     * Metodo get per gli intervalli di scambio
+     * @return gli intervalli di scambio
+     */
     public ArrayList<Intervallo> getIntervalli() {
         return intervalli;
     }
 
+    /**
+     * Metodo get per la scadenza di accettazione
+     * @return la scadenza di accettazione
+     */
     public int getScadenza() {
         return scadenza;
     }
 
+    /**
+     * Metodo che restituisce la stringa corrispondente alla descrizione dei parametri
+     * @return la stringa di visualizzazione dei parametri
+     */
     public String toStringParametri() {
         StringBuffer stb = new StringBuffer();
         stb.append("Piazza: " + this.piazza);
@@ -67,6 +99,10 @@ public class ParametriScambi {
         return stb.toString();
     }
 
+    /**
+     * Metodo statico per l'inserimento dei parametri del sistema per la prima volta
+     * @return i parametri di scambio inseriti
+     */
     public static ParametriScambi inserimentoParametri() {
         String piazza = Utilita.leggiStringaNonVuota("Inserisci il nome della città in cui avvengono gli scambi:");
         int scelta = 1;
@@ -116,10 +152,18 @@ public class ParametriScambi {
 
     }
 
+    /**
+     * Metodo per l'aggiunta di un luogo
+     * @param s il luogo da aggiungere
+     */
     public void addLuogo(String s) {
         this.luoghi.add(s);
     }
 
+    /**
+     * Metodo statico per la creazione di un intervallo inserito dall'utente
+     * @return l'intervallo creato
+     */
     public static Intervallo addIntervallo() {
         boolean intervalloValido = false;
         Orario inizio;
@@ -151,7 +195,7 @@ public class ParametriScambi {
             } while (!finito);
             orari[0] = inizio;
             orari[1] = fine;
-            intervallo = Intervallo.creaintervallo(orari);
+            intervallo = Intervallo.creaIntervallo(orari);
             if (!intervallo.intervalloValido()) {
                 System.out.println("L'intervallo inserito non è valido");
 
@@ -163,6 +207,9 @@ public class ParametriScambi {
 
     }
 
+    /**
+     * Metodo per togliere un intervallo dalla lista
+     */
     public void togliIntervallo(){
         Intervallo toRemove=ParametriScambi.addIntervallo();
         boolean presente=false;
@@ -171,7 +218,7 @@ public class ParametriScambi {
             if(!presente){
                 countI++;
             }
-            if(x.compareIntervalllo(toRemove)){
+            if(x.compareIntervallo(toRemove)){
                 presente=true;
             }
 
@@ -179,7 +226,7 @@ public class ParametriScambi {
         if (presente) {
             this.intervalli.remove(countI-1);
             if(this.intervalli.size()==0){
-                System.out.println("ci deve essere almeno un intervallo quindi aggiungi un intervallo");
+                System.out.println("Ci deve essere almeno un intervallo, quindi aggiungine uno");
                 this.intervalli.add(ParametriScambi.addIntervallo());
             }
         }
@@ -187,6 +234,9 @@ public class ParametriScambi {
             System.out.println("l'intervallo inserito non è presente");
     }
 
+    /**
+     * Metodo per aggiungere un giorno inserito dall'utente
+     */
     public void addGiorno() {
         boolean giornoCorretto = true;
         Giorno g = null;
@@ -207,7 +257,10 @@ public class ParametriScambi {
         this.giorni.add(g);
     }
 
-    public void togliGionro(){
+    /**
+     * Metodo per rimuovere un giorno inserito dall'utente
+     */
+    public void togliGiorno(){
         String nomeGiorno=Utilita.leggiStringaNonVuota("Inserisci il nome del giorno da rimuovere: ");
         Giorno toRemove=Giorno.getGiornoFromString(nomeGiorno);
         boolean gironoEsiste=false;
@@ -225,37 +278,50 @@ public class ParametriScambi {
         }
     }
 
+    /**
+     * Metodo per aggiungere una scadenza inserita dall'utente
+     */
     public void addScadenza(){
-        int scad=Utilita.leggiIntero("inserisci la nuova scadenza: ",1,999999);
+        int scad=Utilita.leggiIntero("Inserisci la nuova scadenza: ",1,999999);
         this.scadenza=scad;
     }
+
+    /**
+     * Metodo per aggiungere un luogo inserito dall'utente
+     */
     public void addLuogo(){
         String luogo=Utilita.leggiStringaNonVuota("Inserisci il nuovo luogo: ");
         this.luoghi.add(luogo);
     }
 
+    /**
+     * Metodo per togliere un luogo inserito dall'utente
+     */
     public void togliLuogo(){
-        String luogoToRemove=Utilita.leggiStringaNonVuota("inserisci il nome del luogo da togliere");
+        String luogoToRemove=Utilita.leggiStringaNonVuota("Inserisci il nome del luogo da togliere");
         if(this.luoghi.contains(luogoToRemove)){
             this.luoghi.remove(luogoToRemove);
         }
         else{
-            System.out.println("questo luogo non è tra i luoghi presenti");
+            System.out.println("Questo luogo non è tra i luoghi presenti");
         }
         if(this.luoghi.size()==0){
-            String luogoMinimo=Utilita.leggiStringaNonVuota("Deve esserci sempre almeno un luogo quindi aggiungi un luogo: ");
+            String luogoMinimo=Utilita.leggiStringaNonVuota("Deve esserci sempre almeno un luogo, quindi aggiungine uno: ");
             this.luoghi.add(luogoMinimo);
         }
     }
 
-    public void modificaParamentri(){
+    /**
+     * Metodo per modificare i parametri del sistema a seconda della scelta dell'utente
+     */
+    public void modificaParametri(){
         System.out.println("Questi sono i parametri:\n"+this.toStringParametri()+"\n");
-        int choise=Utilita.leggiIntero("Inserisci\n1 per modificare i luoghi\n" +
+        int choice=Utilita.leggiIntero("Inserisci\n1 per modificare i luoghi\n" +
                 "2 per modificare gli intervalli\n" +
                 "3 per modificare i giorni\n" +
                 "4 per cambiare la scadenza: ",1,4);
 
-        switch(choise){
+        switch(choice){
             case 1:
                 int choiceL=Utilita.leggiIntero("Inserisci 1 se vuoi aggiungere 2 se vuoi togliere: ",1,2);
                 if(choiceL==1)
@@ -275,7 +341,7 @@ public class ParametriScambi {
                 if(choiceG==1)
                     this.addGiorno();
                 else
-                    this.togliGionro();
+                    this.togliGiorno();
                 break;
             case 4:
                 this.addScadenza();

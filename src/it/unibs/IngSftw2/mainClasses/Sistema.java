@@ -99,7 +99,7 @@ public class Sistema {
 
 
     /**
-     * metodo per la visualizzazione delle radici del sistema
+     * Metodo per la visualizzazione delle radici del sistema
      * @return la stringa con le informazioni sulle radici del sistema
      */
     public String visualizzaRadici(){
