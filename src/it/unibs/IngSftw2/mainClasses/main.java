@@ -34,7 +34,7 @@ public class main {
         }
         File fileSistema = new File("sistema.xml");
         if(fileSistema.exists() && !fileSistema.isDirectory()) {
-            sistema= XmlReader.readSis("sistema.xml");
+            sistema= XmlReader.readSis("sistema.xml");      
         }
         if(!parametriFatti){
             param=ParametriScambi.inserimentoParametri();

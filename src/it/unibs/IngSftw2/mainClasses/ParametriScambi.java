@@ -126,7 +126,7 @@ public class ParametriScambi {
                     giornoCorretto = false;
                 }
                 if (giorni.contains(g)) {
-                    System.out.println("questo giorno è già stato inserito");
+                    System.out.println("Questo giorno è già stato inserito");
                     giornoCorretto = false;
                 }
                 if (g != null && !giorni.contains(g))
@@ -316,28 +316,28 @@ public class ParametriScambi {
      */
     public void modificaParametri(){
         System.out.println("Questi sono i parametri:\n"+this.toStringParametri()+"\n");
-        int choice=Utilita.leggiIntero("Inserisci\n1 per modificare i luoghi\n" +
+        int choice=Utilita.leggiIntero("Inserisci : \n1 per modificare i luoghi\n" +
                 "2 per modificare gli intervalli\n" +
                 "3 per modificare i giorni\n" +
                 "4 per cambiare la scadenza: ",1,4);
 
         switch(choice){
             case 1:
-                int choiceL=Utilita.leggiIntero("Inserisci 1 se vuoi aggiungere 2 se vuoi togliere: ",1,2);
+                int choiceL=Utilita.leggiIntero("Inserisci 1 se vuoi aggiungere, 2 se vuoi togliere: ",1,2);
                 if(choiceL==1)
                     this.addLuogo();
                 else
                     this.togliLuogo();
                 break;
             case 2:
-                int choiceI=Utilita.leggiIntero("Inserisci 1 se vuoi aggiungere 2 se vuoi togliere: ",1,2);
+                int choiceI=Utilita.leggiIntero("Inserisci 1 se vuoi aggiungere, 2 se vuoi togliere: ",1,2);
                 if(choiceI==1)
                     this.intervalli.add(ParametriScambi.addIntervallo());
                 else
                     this.togliIntervallo();
                 break;
             case 3:
-                int choiceG=Utilita.leggiIntero("Inserisci 1 se vuoi aggiungere 2 se vuoi togliere: ",1,2);
+                int choiceG=Utilita.leggiIntero("Inserisci 1 se vuoi aggiungere, 2 se vuoi togliere: ",1,2);
                 if(choiceG==1)
                     this.addGiorno();
                 else

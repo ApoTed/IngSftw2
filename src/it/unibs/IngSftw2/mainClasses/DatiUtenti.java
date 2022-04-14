@@ -10,7 +10,7 @@ public class DatiUtenti {
     public static final String CATEGORIA_NON_PRESENTE = "Categoria non presente";
     public static final String INSERISCI_NOME = "Inserisci il tuo nome: ";
     public static final String INSERISCI_PASSWORD = "Inserisci la tua password: ";
-    public static final Utente CREDENZIALI_PREDEFINITE=new Configuratore("bello", "12");
+    public static final Utente CREDENZIALI_PREDEFINITE=new Configuratore("UserStandard", "PasswordStandard");
     public static final String NOME_NON_DISPONIBILE = "Questo nome utente non è disponibile";
     public static final String NUOVA_PASSWORD = "Inserisci la tua nuova password";
     private ArrayList <Utente> listaUtenti = new ArrayList <Utente>();
@@ -32,7 +32,7 @@ public class DatiUtenti {
     public Utente menuAccesso() {
         boolean successo=false;
         //chiedi se è un nuovo fruitore
-        //fruitore inserisci le tue nove credeziali
+        //fruitore inserisci le tue nove credenziali
         int scelta=Utilita.leggiIntero("Inserisci 1 se sei un nuovo fruitore e vuoi registrarti, 0 altrimenti: ",0,1);
         String username=null;
         String password=null;
@@ -52,16 +52,7 @@ public class DatiUtenti {
         }
         Utente temp= new Utente(username, password);
         if( this.checkConf(temp)) {
-            String newUsername;
-            do {
-                newUsername=Utilita.leggiStringaNonVuota("Inserisci il tuo nuovo nome utente");
-                if(this.checkName(newUsername)==true)
-                    System.out.println(NOME_NON_DISPONIBILE);
-            }while(this.checkName(newUsername)==true);
-
-            String newPassword=Utilita.leggiStringaNonVuota(NUOVA_PASSWORD);
-            this.addUtente(newUsername, newPassword, true);
-            temp=new Configuratore(newUsername, newPassword);
+            temp = nuovoConfiguratore();
 
         }
         for (int i=0;i<3;i++) {
@@ -72,16 +63,7 @@ public class DatiUtenti {
                 String passwordTry=Utilita.leggiStringaNonVuota(INSERISCI_PASSWORD);
                 temp=new Utente(nameTry, passwordTry);
                 if( this.checkConf(temp)) {
-                    String newUsername;
-                    do {
-                        newUsername=Utilita.leggiStringaNonVuota("Inserisci il tuo nuovo nome utente");
-                        if(this.checkName(newUsername)==true)
-                            System.out.println(NOME_NON_DISPONIBILE);
-                    }while(this.checkName(newUsername)==true);
-
-                    String newPassword=Utilita.leggiStringaNonVuota(NUOVA_PASSWORD);
-                    this.addUtente(newUsername, newPassword, true);
-                    temp=new Configuratore(newUsername, newPassword);
+                    temp = nuovoConfiguratore();
 
                 }
 
@@ -132,9 +114,28 @@ public class DatiUtenti {
     }
 
     /**
+     * Metodo che restituisce un nuovo fruitore che si registra al sistema
+     * @return il nuovo configuratore con credenziali inserite da tastiera
+     */
+    public Utente nuovoConfiguratore() {
+        Utente temp;
+        String newUsername;
+        do {
+            newUsername=Utilita.leggiStringaNonVuota("Inserisci il tuo nuovo nome utente:");
+            if(this.checkName(newUsername)==true)
+                System.out.println("Questo nome utente non è disponibile");
+        }while(this.checkName(newUsername)==true);
+
+        String newPassword=Utilita.leggiStringaNonVuota("Inserisci la tua nuova password:");
+        this.addUtente(newUsername, newPassword, true);
+        temp=new Configuratore(newUsername, newPassword);
+        return temp;
+    }
+
+    /**
      * Metodo per il controllo delle credenziali predefinite
-     * @param u utente del quale si vuole verificare l'inseriemnto delle credenziali predefinite
-     * @return true se le credenziali predefinite sono corrette,false altrimenti
+     * @param u utente del quale si vuole verificare l'inserimento delle credenziali predefinite
+     * @return true se le credenziali predefinite sono corrette, false altrimenti
      */
     public boolean checkConf(Utente u) {
         boolean corretto=false;
