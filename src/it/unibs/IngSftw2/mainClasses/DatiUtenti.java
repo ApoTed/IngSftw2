@@ -114,7 +114,7 @@ public class DatiUtenti {
     }
 
     /**
-     * Metodo che restituisce un nuovo fruitore che si registra al sistema
+     * Metodo che restituisce un nuovo configuratore che si registra al sistema
      * @return il nuovo configuratore con credenziali inserite da tastiera
      */
     public Utente nuovoConfiguratore() {

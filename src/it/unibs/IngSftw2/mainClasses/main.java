@@ -36,7 +36,7 @@ public class main {
         if(fileSistema.exists() && !fileSistema.isDirectory()) {
             sistema= XmlReader.readSis("sistema.xml");      
         }
-        if(!parametriFatti){
+        if(!parametriFatti && acceduto instanceof Configuratore){
             param=ParametriScambi.inserimentoParametri();
         }
         Configurazione conf=new Configurazione(sistema,param);
@@ -66,7 +66,9 @@ public class main {
         System.out.println(p.toStringParametri());
         */
         System.out.println("\nFINE PROGRAMMA");
-        XmlWriter.salvaParametri(conf.getParametri(),"parametriSalvati.xml");
+        if(parametriFatti) {
+            XmlWriter.salvaParametri(conf.getParametri(), "parametriSalvati.xml");
+        }
         if(conf.getSis().getListaGerarchie().size()!=0){
             XmlWriter.salvaSistema(conf.getSis(), "sistema.xml");
         }
