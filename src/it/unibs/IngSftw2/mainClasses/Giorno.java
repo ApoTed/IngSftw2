@@ -20,19 +20,19 @@ public enum Giorno {
         String day=null;
         switch(this){
             case LUNEDI :
-                day="lunedì";
+                day="lunedi";
                 break;
             case MARTEDI:
-                day="martedì";
+                day="martedi";
                 break;
             case MERCOLEDI:
-                day="mercoledì";
+                day="mercoledi";
                 break;
             case GIOVEDI:
-                day="giovedì";
+                day="giovedi";
                 break;
             case VENERDI:
-                day="venerdì";
+                day="venerdi";
                 break;
             case SABATO:
                 day="sabato";
@@ -52,18 +52,18 @@ public enum Giorno {
     public static Giorno getGiornoFromString(String gg){
 
         switch(gg){
-            case "lunedì":
+            case "lunedi":
                 return LUNEDI;
-            case "martedì":
+            case "martedi":
                 return MARTEDI;
 
-            case "mercoledì":
+            case "mercoledi":
                 return MERCOLEDI;
 
-            case "giovedì":
+            case "giovedi":
                 return GIOVEDI;
 
-            case "venerdì":
+            case "venerdi":
                 return VENERDI;
 
             case "sabato":

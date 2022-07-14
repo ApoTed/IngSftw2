@@ -104,6 +104,7 @@ public class ParametriScambi {
      * @return i parametri di scambio inseriti
      */
     public static ParametriScambi inserimentoParametri() {
+        System.out.println("I parametri di sistema non sono ancora stati inseriti");
         String piazza = Utilita.leggiStringaNonVuota("Inserisci il nome della città in cui avvengono gli scambi:");
         int scelta = 1;
         ArrayList<String> luoghi = new ArrayList<>();
