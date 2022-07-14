@@ -66,7 +66,7 @@ public class main {
         System.out.println(p.toStringParametri());
         */
         System.out.println("\nFINE PROGRAMMA");
-        if(parametriFatti) {
+        if(param != null) {
             XmlWriter.salvaParametri(conf.getParametri(), "parametriSalvati.xml");
         }
         if(conf.getSis().getListaGerarchie().size()!=0){
